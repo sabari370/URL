@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block title %}Analysis Result - PhishGuard AI{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9">
+
+            <!-- Result Header -->
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+                <div>
+                    <h2 class="fw-bold mb-1">
+                        <i class="fa-solid fa-chart-simple text-cyan me-2"></i>Security Analysis Report
+                    </h2>
+                    <span class="text-secondary small">Generated at {{ current_year }} by PhishGuard AI Random Forest Engine</span>
+                </div>
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('scan.scan') }}" class="btn btn-cyber-outline btn-sm">
+                        <i class="fa-solid fa-rotate-left me-1"></i> Scan Another
+                    </a>
+                    {% if current_user %}
+                    <a href="{{ url_for('dashboard.history') }}" class="btn btn-cyber-primary btn-sm">
+                        <i class="fa-solid fa-clock-rotate-left me-1"></i> Scan History
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Tested URL Details Card -->
+            <div class="card cyber-card p-3 mb-4">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                    <div class="text-truncate me-2" style="max-width: 85%;">
+                        <span class="text-secondary small d-block">TARGET URL INSPECTED:</span>
+                        <code class="text-light fs-6 text-break">{{ result.url }}</code>
+                    </div>
+                    <div>
+                        {% if result.qr_source %}
+                        <span class="badge bg-info-subtle text-info border border-info px-2 py-1">
+                            <i class="fa-solid fa-qrcode me-1"></i> Decoded from QR
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Primary Verdict Card -->
+            {% set score = result.risk_score %}
+            {% set cls = result.classification %}
+            <div class="card cyber-card p-4 p-md-5 mb-4 border-2 {% if cls == 'Likely Safe' %}border-success{% elif cls == 'Suspicious' %}border-warning{% else %}border-danger{% endif %} shadow-lg">
+                <div class="row align-items-center gy-4">
+                    <div class="col-md-7 border-md-end border-dark-subtle pe-md-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="verdict-icon me-3">
+                                {% if cls == 'Likely Safe' %}
+                                <i class="fa-solid fa-circle-check text-success fa-3x"></i>
+                                {% elif cls == 'Suspicious' %}
+                                <i class="fa-solid fa-triangle-exclamation text-warning fa-3x"></i>
+                                {% else %}
+                                <i class="fa-solid fa-shield-virus text-danger fa-3x"></i>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <span class="text-secondary text-uppercase small letter-spacing d-block">Classification Verdict</span>
+                                <h3 class="fw-bold mb-0 {% if cls == 'Likely Safe' %}text-success{% elif cls == 'Suspicious' %}text-warning{% else %}text-danger{% endif %}">
+                                    {{ cls }}
+                                </h3>
+                            </div>
+                        </div>
+
+                        <!-- Progress Bar for Risk Score -->
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between small text-secondary mb-1">
+                                <span>Risk Assessment Score</span>
+                                <span class="fw-bold text-light">{{ score }} / 100</span>
+                            </div>
+                            <div class="progress cyber-progress" style="height: 12px;">
+                                <div class="progress-bar {% if score < 30 %}bg-success{% elif score < 60 %}bg-warning{% else %}bg-danger{% endif %}"
+                                     role="progressbar" style="width: {{ score }}%;" aria-valuenow="{{ score }}" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between text-secondary" style="font-size: 0.75rem;">
+                            <span>0 (Low Risk)</span>
+                            <span>30 (Suspicious)</span>
+                            <span>60 (High Risk)</span>
+                            <span>100</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 ps-md-4">
+                        <div class="p-3 bg-dark rounded-3 border border-secondary text-center mb-3">
+                            <div class="text-secondary small text-uppercase">ML Model Confidence</div>
+                            <div class="display-6 fw-bold text-cyan mb-0">{{ (result.probability * 100)|round(1) }}%</div>
+                            <div class="text-muted small">Phishing probability estimation</div>
+                        </div>
+
+                        <div class="d-flex justify-content-around text-center small">
+                            <div>
+                                <span class="badge bg-danger rounded-pill px-2">{{ result.risk_summary.high }}</span>
+                                <div class="text-secondary mt-1">High Risk</div>
+                            </div>
+                            <div>
+                                <span class="badge bg-warning text-dark rounded-pill px-2">{{ result.risk_summary.medium }}</span>
+                                <div class="text-secondary mt-1">Medium Risk</div>
+                            </div>
+                            <div>
+                                <span class="badge bg-success rounded-pill px-2">{{ result.risk_summary.low }}</span>
+                                <div class="text-secondary mt-1">Low Risk</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Defensive Recommendation Card -->
+            <div class="card cyber-card p-4 mb-4 border-start border-4 {% if cls == 'Likely Safe' %}border-success{% elif cls == 'Suspicious' %}border-warning{% else %}border-danger{% endif %}">
+                <h5 class="fw-bold text-light mb-2">
+                    <i class="fa-solid fa-bullhorn text-cyan me-2"></i>Security Advisory & Guidance
+                </h5>
+                <p class="text-secondary mb-3">
+                    {{ result.recommendation }}
+                </p>
+                <div class="p-3 rounded bg-dark border border-secondary text-secondary small">
+                    <i class="fa-solid fa-circle-exclamation text-warning me-2"></i>
+                    <strong>Important Note on HTTPS:</strong> Modern web standards mean that phishing attacks frequently provision legitimate TLS certificates. An active lock icon (HTTPS) simply indicates that transmission is encrypted — it does NOT certify that the domain is genuine.
+                </div>
+            </div>
+
+            <!-- Explainable Feature Breakdown Table -->
+            <div class="card cyber-card p-4 mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-light mb-0">
+                        <i class="fa-solid fa-magnifying-glass-chart text-cyan me-2"></i>Feature Risk Breakdown
+                    </h5>
+                    <span class="badge bg-dark-subtle border border-secondary text-secondary">
+                        {{ result.risk_factors|length }} Factors Analyzed
+                    </span>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table cyber-table table-hover align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Factor Inspected</th>
+                                <th>Observed Value</th>
+                                <th>Risk Level</th>
+                                <th>Security Context</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for f in result.risk_factors %}
+                            <tr>
+                                <td class="fw-semibold text-light">{{ f.factor }}</td>
+                                <td><code class="text-cyan small">{{ f.value }}</code></td>
+                                <td>
+                                    {% if f.level == 'HIGH' %}
+                                    <span class="badge bg-danger">HIGH</span>
+                                    {% elif f.level == 'MEDIUM' %}
+                                    <span class="badge bg-warning text-dark">MEDIUM</span>
+                                    {% else %}
+                                    <span class="badge bg-success">LOW</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-secondary small">{{ f.description }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Extracted Raw Lexical Feature Matrix (Collapsible) -->
+            <div class="card cyber-card p-4 mb-4">
+                <a class="text-decoration-none d-flex justify-content-between align-items-center text-light"
+                   data-bs-toggle="collapse" href="#rawFeaturesCollapse" role="button">
+                    <span class="fw-bold">
+                        <i class="fa-solid fa-code text-cyan me-2"></i>Inspect Raw Feature Matrix ({{ result.features|length }} Parameters)
+                    </span>
+                    <i class="fa-solid fa-chevron-down text-secondary"></i>
+                </a>
+                <div class="collapse mt-3" id="rawFeaturesCollapse">
+                    <div class="p-3 bg-dark rounded border border-secondary">
+                        <div class="row g-2 small font-monospace">
+                            {% for k, v in result.features.items() %}
+                            <div class="col-sm-6 col-md-4 col-lg-3">
+                                <span class="text-secondary">{{ k }}:</span> <span class="text-cyan fw-bold">{{ v }}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disclaimer Banner -->
+            <div class="text-center text-secondary small py-2">
+                <i class="fa-solid fa-shield-halved text-cyan me-1"></i>
+                {{ result.disclaimer }}
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

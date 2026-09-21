@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+
+{% block title %}Scan History - PhishGuard AI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+        <div>
+            <h2 class="fw-bold mb-1">
+                <i class="fa-solid fa-clock-rotate-left text-cyan me-2"></i>Inspection History
+            </h2>
+            <p class="text-secondary small mb-0">Review past scan assessments, search historical targets, and manage analysis records.</p>
+        </div>
+        <div>
+            <a href="{{ url_for('scan.scan') }}" class="btn btn-cyber-primary btn-sm">
+                <i class="fa-solid fa-magnifying-glass me-1"></i> Scan New URL
+            </a>
+        </div>
+    </div>
+
+    <!-- Search & Filtering Bar -->
+    <div class="card cyber-card p-3 mb-4">
+        <form action="{{ url_for('dashboard.history') }}" method="GET" class="row g-2 align-items-center">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text bg-dark border-secondary text-secondary">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" name="search" class="form-control bg-dark text-light border-secondary"
+                           placeholder="Search by URL keyword..." value="{{ search }}">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <select name="filter" class="form-select bg-dark text-light border-secondary">
+                    <option value="" {% if not filter_classification %}selected{% endif %}>All Classifications</option>
+                    <option value="Likely Safe" {% if filter_classification == 'Likely Safe' %}selected{% endif %}>Likely Safe</option>
+                    <option value="Suspicious" {% if filter_classification == 'Suspicious' %}selected{% endif %}>Suspicious</option>
+                    <option value="Likely Phishing" {% if filter_classification == 'Likely Phishing' %}selected{% endif %}>Likely Phishing</option>
+                </select>
+            </div>
+            <div class="col-md-2 d-flex gap-2">
+                <button type="submit" class="btn btn-cyber-primary w-100">
+                    <i class="fa-solid fa-filter me-1"></i> Filter
+                </button>
+                {% if search or filter_classification %}
+                <a href="{{ url_for('dashboard.history') }}" class="btn btn-dark border-secondary text-secondary">
+                    <i class="fa-solid fa-xmark"></i>
+                </a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+    <!-- Scans Table -->
+    <div class="card cyber-card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-secondary small">Showing {{ scans|length }} of {{ total_count }} total entries</span>
+            <span class="text-secondary small">Page {{ page }} of {{ total_pages }}</span>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table cyber-table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th style="width: 45%;">Inspected Target URL</th>
+                        <th>Classification</th>
+                        <th>Risk Score</th>
+                        <th>Timestamp</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                    {% for s in scans %}
+                    <tr id="scan-row-{{ s._id }}">
+                        <td>
+                            <div class="text-truncate" style="max-width: 420px;" title="{{ s.url }}">
+                                <code class="text-light small">{{ s.url }}</code>
+                            </div>
+                        </td>
+                        <td>
+                            {% if s.classification == 'Likely Safe' %}
+                            <span class="badge bg-success">Likely Safe</span>
+                            {% elif s.classification == 'Suspicious' %}
+                            <span class="badge bg-warning text-dark">Suspicious</span>
+                            {% else %}
+                            <span class="badge bg-danger">Likely Phishing</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="fw-bold {% if s.risk_score < 30 %}text-success{% elif s.risk_score < 60 %}text-warning{% else %}text-danger{% endif %}">
+                                {{ s.risk_score }}/100
+                            </span>
+                        </td>
+                        <td class="text-secondary small">
+                            {{ s.scanned_at.strftime('%Y-%m-%d %H:%M') if s.scanned_at else 'N/A' }}
+                        </td>
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm">
+                                <a href="{{ url_for('dashboard.scan_detail', scan_id=s._id) }}" class="btn btn-dark border-secondary text-cyan" title="View Full Analysis">
+                                    <i class="fa-solid fa-eye"></i>
+                                </a>
+                                <button type="button" class="btn btn-dark border-secondary text-danger btn-delete-scan"
+                                        data-scan-id="{{ s._id }}" title="Delete Record">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center py-5 text-secondary">
+                            <i class="fa-solid fa-search fa-2x mb-3 d-block text-secondary"></i>
+                            No scans found matching your search or filter criteria.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        {% if total_pages > 1 %}
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center cyber-pagination">
+                <li class="page-item {% if page <= 1 %}disabled{% endif %}">
+                    <a class="page-link" href="{{ url_for('dashboard.history', page=page-1, search=search, filter=filter_classification) }}">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </a>
+                </li>
+                {% for p in range(1, total_pages + 1) %}
+                <li class="page-item {% if p == page %}active{% endif %}">
+                    <a class="page-link" href="{{ url_for('dashboard.history', page=p, search=search, filter=filter_classification) }}">
+                        {{ p }}
+                    </a>
+                </li>
+                {% endfor %}
+                <li class="page-item {% if page >= total_pages %}disabled{% endif %}">
+                    <a class="page-link" href="{{ url_for('dashboard.history', page=page+1, search=search, filter=filter_classification) }}">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // AJAX scan deletion handler
+    document.querySelectorAll('.btn-delete-scan').forEach(btn => {
+        btn.addEventListener('click', async function() {
+            const scanId = this.getAttribute('data-scan-id');
+            if (!confirm('Are you sure you want to permanently delete this scan record?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`/history/${scanId}`, {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await response.json();
+                if (data.success) {
+                    const row = document.getElementById(`scan-row-${scanId}`);
+                    if (row) {
+                        row.remove();
+                    }
+                } else {
+                    alert(data.error || 'Failed to delete record.');
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Network error while deleting scan record.');
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Register - PhishGuard AI{% endblock %}
+
+{% block content %}
+<div class="container py-5 my-auto">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6 col-xl-5">
+            <div class="text-center mb-4">
+                <div class="brand-shield mb-3 d-inline-block">
+                    <i class="fa-solid fa-user-plus fa-3x text-cyan"></i>
+                </div>
+                <h3 class="fw-bold text-light">Create Analyst Account</h3>
+                <p class="text-secondary small">Join PhishGuard AI to preserve inspection telemetry and manage your URL analysis history.</p>
+            </div>
+
+            <div class="card cyber-card p-4 shadow-lg border-secondary">
+                <form action="{{ url_for('auth.register') }}" method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label text-light small fw-semibold">Full Name</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-dark border-secondary text-secondary">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                            <input type="text" class="form-control bg-dark text-light border-secondary" id="name" name="name"
+                                   placeholder="Security Analyst" value="{{ name or '' }}" required autofocus autocomplete="name">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label text-light small fw-semibold">Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-dark border-secondary text-secondary">
+                                <i class="fa-solid fa-envelope"></i>
+                            </span>
+                            <input type="email" class="form-control bg-dark text-light border-secondary" id="email" name="email"
+                                   placeholder="analyst@domain.com" value="{{ email or '' }}" required autocomplete="email">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label text-light small fw-semibold">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-dark border-secondary text-secondary">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <input type="password" class="form-control bg-dark text-light border-secondary" id="password" name="password"
+                                   placeholder="Minimum 8 characters" required autocomplete="new-password">
+                        </div>
+                        <div class="form-text text-secondary" style="font-size: 0.75rem;">
+                            Password will be securely hashed with bcrypt (salt cost 12).
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label text-light small fw-semibold">Confirm Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-dark border-secondary text-secondary">
+                                <i class="fa-solid fa-shield-check"></i>
+                            </span>
+                            <input type="password" class="form-control bg-dark text-light border-secondary" id="confirm_password" name="confirm_password"
+                                   placeholder="Re-enter password" required autocomplete="new-password">
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-cyber-primary py-2 fw-semibold">
+                            <i class="fa-solid fa-user-check me-2"></i> Register Account
+                        </button>
+                    </div>
+                </form>
+
+                <div class="text-center mt-4 pt-3 border-top border-dark-subtle text-secondary small">
+                    Already registered?
+                    <a href="{{ url_for('auth.login') }}" class="text-cyan text-decoration-none fw-semibold">Sign in here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

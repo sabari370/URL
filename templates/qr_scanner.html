@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}QR Code URL Scanner - PhishGuard AI{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 col-xl-8">
+
+            <div class="text-center mb-4">
+                <div class="display-6 fw-bold mb-2">
+                    <i class="fa-solid fa-qrcode text-cyan me-2"></i>QR Code (Quishing) Scanner
+                </div>
+                <p class="text-secondary">
+                    Upload an image containing a Quick Response (QR) barcode to safely decode and analyze the embedded destination URL.
+                </p>
+            </div>
+
+            <!-- Upload Card -->
+            <div class="card cyber-card p-4 p-md-5 mb-4 shadow-lg">
+                <form action="{{ url_for('scan.qr_scan') }}" method="POST" enctype="multipart/form-data" id="qrForm">
+                    <div class="upload-dropzone p-4 text-center border-dashed rounded-3 mb-3" id="dropzone">
+                        <input type="file" name="qr_image" id="qrFileInput" class="d-none" accept=".png,.jpg,.jpeg,.gif,.bmp,.webp" required>
+                        <div id="dropzonePrompt">
+                            <i class="fa-solid fa-cloud-arrow-up fa-3x text-cyan mb-3"></i>
+                            <h5 class="fw-bold text-light mb-1">Drag & Drop QR Image Here</h5>
+                            <p class="text-secondary small mb-3">Supported formats: PNG, JPG, JPEG, GIF, BMP, WEBP (Max 16MB)</p>
+                            <button type="button" class="btn btn-cyber-outline btn-sm" onclick="document.getElementById('qrFileInput').click();">
+                                <i class="fa-solid fa-folder-open me-1"></i> Browse Image File
+                            </button>
+                        </div>
+                        <div id="previewContainer" class="d-none mt-2">
+                            <img id="imagePreview" src="#" alt="QR Code Preview" class="img-thumbnail bg-dark border-secondary mb-2" style="max-height: 220px;">
+                            <div id="selectedFileName" class="text-secondary small"></div>
+                            <button type="button" class="btn btn-sm btn-dark border-secondary text-danger mt-2" id="btnResetFile">
+                                <i class="fa-solid fa-xmark me-1"></i> Remove Image
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-3">
+                        <button type="submit" class="btn btn-cyber-primary py-2 fw-semibold" id="btnSubmitQr">
+                            <span class="spinner-border spinner-border-sm me-2 d-none" id="qrSpinner"></span>
+                            <i class="fa-solid fa-shield-virus me-2"></i> Decode & Analyze QR Payload
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Non-URL Decoded Alert (if applicable) -->
+            {% if non_url_content %}
+            <div class="alert alert-info cyber-alert mb-4">
+                <h6 class="fw-bold"><i class="fa-solid fa-circle-info me-2"></i>Non-URL QR Payload Detected:</h6>
+                <p class="mb-0 text-break font-monospace small"><code>{{ non_url_content }}</code></p>
+                <span class="text-secondary small d-block mt-2">This QR code contains plain text or numeric data rather than an HTTP/HTTPS address.</span>
+            </div>
+            {% endif %}
+
+            <!-- Defensive Advisory Card -->
+            <div class="card cyber-card p-4 border-warning-subtle mb-4">
+                <div class="d-flex align-items-start">
+                    <div class="me-3 text-warning">
+                        <i class="fa-solid fa-triangle-exclamation fa-2x"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold text-light mb-1">Protection Against "Quishing" Attacks</h6>
+                        <p class="text-secondary small mb-0">
+                            <strong>QR Phishing (Quishing)</strong> tricks victims into scanning physical or email QR barcodes on mobile devices, where URL inspection is more difficult. PhishGuard AI decodes the payload, presents the decoded address for human inspection, and evaluates structural risks before you ever open it.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How It Works Flow -->
+            <div class="card cyber-card p-4">
+                <h6 class="fw-bold text-light mb-3">Safe QR Decoding Pipeline</h6>
+                <div class="row g-3 text-center small text-secondary">
+                    <div class="col-md-4">
+                        <div class="p-3 bg-dark rounded border border-secondary">
+                            <i class="fa-solid fa-image text-cyan fa-lg mb-2 d-block"></i>
+                            <strong class="text-light d-block">1. Upload Image</strong>
+                            Clean parsing and size bounds check.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-dark rounded border border-secondary">
+                            <i class="fa-solid fa-barcode text-cyan fa-lg mb-2 d-block"></i>
+                            <strong class="text-light d-block">2. Offline Extraction</strong>
+                            Decoded via computer vision algorithms.
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="p-3 bg-dark rounded border border-secondary">
+                            <i class="fa-solid fa-shield-halved text-cyan fa-lg mb-2 d-block"></i>
+                            <strong class="text-light d-block">3. Isolated ML Analysis</strong>
+                            Classified without network navigation.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/qr.js') }}"></script>
+{% endblock %}

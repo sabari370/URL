@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}Security Tips & Guidelines - PhishGuard AI{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <div class="badge cyber-badge mb-2 px-3 py-2 rounded-pill">
+            <i class="fa-solid fa-shield-heart me-1 text-cyan"></i> Defensive Cyber Hygiene
+        </div>
+        <h2 class="display-6 fw-bold">Essential Phishing Prevention Guidelines</h2>
+        <p class="text-secondary mx-auto" style="max-width: 700px;">
+            Technical machine learning tools assist in detection, but active vigilance and security awareness remain your strongest perimeter defense against social engineering.
+        </p>
+    </div>
+
+    <!-- 12 Educational Cards -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-4">
+            <div class="card cyber-card h-100 p-4 border-secondary">
+                <div class="feature-icon-wrapper mb-3 text-cyan">
+                    <i class="fa-solid fa-globe fa-2x"></i>
+                </div>
+                <h5 class="fw-bold text-light">1. Scrutinize the Registered Domain</h5>
+                <p class="text-secondary small mb-0">
+                    Attackers often prepend familiar brands as subdomains (e.g. <code>paypal.com.verify-user.xyz</code>). Always read the domain name from right to left to locate the true root authority.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card cyber-card h-100 p-4 border-secondary">
+                <div class="feature-icon-wrapper mb-3 text-warning">
+                    <i class="fa-solid fa-lock fa-2x"></i>
+                </div>
+                <h5 class="fw-bold text-light">2. Never Equate HTTPS with Safety</h5>
+                <p class="text-secondary small mb-0">
+                    HTTPS only encrypts communication between your browser and the server. It does <strong>not</strong> prove the server owner is honest. Over 80% of modern phishing websites utilize valid TLS certificates.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card cyber-card h-100 p-4 border-secondary">
+                <div class="feature-icon-wrapper mb-3 text-danger">
+                    <i class="fa-solid fa-clock-fast fa-2x"></i>
+                </div>
+                <h5 class="fw-bold text-light">3. Beware of Manufactured Urgency</h5>
+                <p class="text-secondary small mb-0">
+                    Phishing attacks rely on artificial panic: "Account suspended in 24 hours," "Unauthorized transaction detected," or "Password expiring today." Step back and verify before reacting.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card cyber-card h-100 p-4 border-secondary">
+                <div class="feature-icon-wrapper mb-3 text-cyan">
+                    <i class="fa-solid fa-keyboard fa-2x"></i>
+                </div>
+                <h5 class="fw-bold text-light">4. Navigate Manually to Critical Services</h5>
+                <p class="text-secondary small mb-0">
+                    For banking, cloud storage, email, or government portals, never click links inside emails or SMS messages. Open your browser and type the trusted domain address yourself.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card cyber-card h-100 p-4 border-secondary">
+                <div class="feature-icon-wrapper mb-3 text-cyan">
+                    <i class="fa-solid fa-qrcode fa-2x"></i>
+                </div>
+                <h5 class="fw-bold text-light">5. Exercise Caution with QR Barcodes</h5>
+                <p class="text-secondary small mb-0">
+                    Physical stickers over legitimate parking meters, restaurant menus, or unsolicited letters can redirect your device to credential harvesters. Use PhishGuard AI's QR tool to preview links first.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card cyber-card h-100 p-4 border-secondary">
+                <div class="feature-icon-wrapper mb-3 text-warning">
+                    <i class="fa-solid fa-scissors fa-2x"></i>
+                </div>
+                <h5 class="fw-bold text-light">6. Expand Shortened URLs</h5>
+                <p class="text-secondary small mb-0">
+                    URL shortening platforms (bit.ly, tinyurl) mask the true destination. If you receive an unexpected short link, use link-expansion tools or avoid opening it altogether.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card cyber-card h-100 p-4 border-secondary">
+                <div class="feature-icon-wrapper mb-3 text-success">
+                    <i class="fa-solid fa-key fa-2x"></i>
+                </div>
+                <h5 class="fw-bold text-light">7. Mandate Multi-Factor Authentication</h5>
+                <p class="text-secondary small mb-0">
+                    Enable hardware security keys (FIDO2/WebAuthn) or authenticator apps (TOTP). MFA prevents attackers from gaining unauthorized access even if your password is stolen.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card cyber-card h-100 p-4 border-secondary">
+                <div class="feature-icon-wrapper mb-3 text-cyan">
+                    <i class="fa-solid fa-font fa-2x"></i>
+                </div>
+                <h5 class="fw-bold text-light">8. Spot Homograph / Typosquatting Tricks</h5>
+                <p class="text-secondary small mb-0">
+                    Look for character substitutions: <code>rn</code> imitating <code>m</code>, <code>0</code> replacing <code>o</code>, or Cyrillic letters that appear identical in Latin alphabets (IDN homograph attacks).
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card cyber-card h-100 p-4 border-secondary">
+                <div class="feature-icon-wrapper mb-3 text-danger">
+                    <i class="fa-solid fa-file-circle-exclamation fa-2x"></i>
+                </div>
+                <h5 class="fw-bold text-light">9. Block Unexpected Download Prompts</h5>
+                <p class="text-secondary small mb-0">
+                    Legitimate websites rarely prompt an instant file download upon landing. Never execute downloaded <code>.iso</code>, <code>.exe</code>, <code>.vbs</code>, or macro-enabled documents from unknown links.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card cyber-card h-100 p-4 border-secondary">
+                <div class="feature-icon-wrapper mb-3 text-cyan">
+                    <i class="fa-solid fa-arrow-pointer fa-2x"></i>
+                </div>
+                <h5 class="fw-bold text-light">10. Hover to Preview Link Targets</h5>
+                <p class="text-secondary small mb-0">
+                    In desktop email clients and web browsers, hover your cursor over hyperlinked text before clicking. Verify that the URL shown in the status bar matches the link's anchor text.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card cyber-card h-100 p-4 border-secondary">
+                <div class="feature-icon-wrapper mb-3 text-success">
+                    <i class="fa-solid fa-shield-virus fa-2x"></i>
+                </div>
+                <h5 class="fw-bold text-light">11. Keep Browsers & Systems Patched</h5>
+                <p class="text-secondary small mb-0">
+                    Modern browsers include built-in reputation filters and zero-day rendering patches. Ensure automatic updates are enabled for your browser and underlying operating system.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card cyber-card h-100 p-4 border-secondary">
+                <div class="feature-icon-wrapper mb-3 text-warning">
+                    <i class="fa-solid fa-bullhorn fa-2x"></i>
+                </div>
+                <h5 class="fw-bold text-light">12. Report Phishing Promptly</h5>
+                <p class="text-secondary small mb-0">
+                    If you identify a phishing attempt at work or school, report it to your IT security team or forward it to global reporting feeds like Google Safe Browsing and the Anti-Phishing Working Group (APWG).
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Educational Viva Notice Box -->
+    <div class="card cyber-card p-4 border-cyan-subtle">
+        <div class="d-flex align-items-center">
+            <i class="fa-solid fa-graduation-cap text-cyan fa-2x me-3"></i>
+            <div>
+                <h6 class="fw-bold text-light mb-1">Academic Cybersecurity Demonstration</h6>
+                <p class="text-secondary small mb-0">
+                    These guidelines complement the PhishGuard AI software system designed by <strong>S. Sabari</strong> for the BCA Final-Year Project demonstration.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

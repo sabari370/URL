@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel - PhishGuard AI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Admin Header -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+        <div>
+            <div class="d-flex align-items-center mb-1">
+                <span class="badge bg-danger me-2 px-2 py-1">ADMINISTRATOR</span>
+                <h2 class="fw-bold mb-0">System Administration & Telemetry</h2>
+            </div>
+            <p class="text-secondary small mb-0">Global inspection metrics, machine learning provenance, and role management.</p>
+        </div>
+        <div>
+            <a href="{{ url_for('admin.list_users') }}" class="btn btn-cyber-outline btn-sm">
+                <i class="fa-solid fa-users me-1"></i> Manage Users
+            </a>
+        </div>
+    </div>
+
+    <!-- Global Stats Row -->
+    <div class="row g-3 mb-4">
+        <div class="col-sm-6 col-md-4 col-xl">
+            <div class="card cyber-card p-3 border-secondary">
+                <span class="text-secondary small text-uppercase">Total Users</span>
+                <h3 class="fw-bold text-light mb-0 mt-1">{{ stats.total_users }}</h3>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-xl">
+            <div class="card cyber-card p-3 border-secondary">
+                <span class="text-secondary small text-uppercase">Total Scans</span>
+                <h3 class="fw-bold text-light mb-0 mt-1">{{ stats.total_scans }}</h3>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-xl">
+            <div class="card cyber-card p-3 border-secondary">
+                <span class="text-secondary small text-uppercase">Safe Detections</span>
+                <h3 class="fw-bold text-success mb-0 mt-1">{{ stats.safe_count }}</h3>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-xl">
+            <div class="card cyber-card p-3 border-secondary">
+                <span class="text-secondary small text-uppercase">Suspicious</span>
+                <h3 class="fw-bold text-warning mb-0 mt-1">{{ stats.suspicious_count }}</h3>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-xl">
+            <div class="card cyber-card p-3 border-secondary">
+                <span class="text-secondary small text-uppercase">Phishing Blocked</span>
+                <h3 class="fw-bold text-danger mb-0 mt-1">{{ stats.phishing_count }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Model Status & ML Metadata Card -->
+    <div class="card cyber-card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold text-light mb-0">
+                <i class="fa-solid fa-brain text-cyan me-2"></i>Machine Learning Model Provenance
+            </h5>
+            <div>
+                {% if model_file_present %}
+                <span class="badge bg-success-subtle text-success border border-success px-2 py-1">
+                    <i class="fa-solid fa-circle-check me-1"></i> Model File Active (.pkl)
+                </span>
+                {% else %}
+                <span class="badge bg-danger-subtle text-danger border border-danger px-2 py-1">
+                    <i class="fa-solid fa-triangle-exclamation me-1"></i> Model Artifact Missing
+                </span>
+                {% endif %}
+            </div>
+        </div>
+
+        {% if model_metadata %}
+        <div class="row g-3">
+            <div class="col-md-3">
+                <div class="p-3 bg-dark rounded border border-secondary">
+                    <div class="text-secondary small">Model Algorithm</div>
+                    <div class="fw-bold text-light">{{ model_metadata.model_name }}</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-3 bg-dark rounded border border-secondary">
+                    <div class="text-secondary small">Trained Timestamp</div>
+                    <div class="fw-bold text-light">{{ model_metadata.training_date }}</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-3 bg-dark rounded border border-secondary">
+                    <div class="text-secondary small">Dataset Dimensions</div>
+                    <div class="fw-bold text-light">{{ model_metadata.total_samples }} URLs ({{ model_metadata.feature_count }} features)</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-3 bg-dark rounded border border-secondary">
+                    <div class="text-secondary small">Test Evaluation Accuracy</div>
+                    <div class="fw-bold text-cyan">{{ (model_metadata.metrics.accuracy * 100)|round(2) }}%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-3 p-3 bg-dark rounded border border-secondary">
+            <h6 class="fw-bold text-light mb-2">Metrics Summary (Holdout Test Split):</h6>
+            <div class="d-flex flex-wrap gap-4 small text-secondary">
+                <div>Accuracy: <strong class="text-light">{{ (model_metadata.metrics.accuracy * 100)|round(2) }}%</strong></div>
+                <div>Precision: <strong class="text-light">{{ (model_metadata.metrics.precision * 100)|round(2) }}%</strong></div>
+                <div>Recall: <strong class="text-light">{{ (model_metadata.metrics.recall * 100)|round(2) }}%</strong></div>
+                <div>F1-Score: <strong class="text-light">{{ (model_metadata.metrics.f1_score * 100)|round(2) }}%</strong></div>
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-warning mb-0">
+            <i class="fa-solid fa-circle-exclamation me-2"></i>
+            Model metadata not found in database or models folder. To train the classifier, execute:
+            <code>python ml/train_model.py</code>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Recent Global Scans Table -->
+    <div class="card cyber-card p-4">
+        <h5 class="fw-bold text-light mb-3">
+            <i class="fa-solid fa-list text-cyan me-2"></i>Recent Scans (System-Wide)
+        </h5>
+
+        <div class="table-responsive">
+            <table class="table cyber-table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>URL</th>
+                        <th>Classification</th>
+                        <th>Risk Score</th>
+                        <th>User ID</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in recent_scans %}
+                    <tr>
+                        <td class="text-truncate" style="max-width: 320px;">
+                            <code class="text-light small">{{ s.url }}</code>
+                        </td>
+                        <td>
+                            {% if s.classification == 'Likely Safe' %}
+                            <span class="badge bg-success">Likely Safe</span>
+                            {% elif s.classification == 'Suspicious' %}
+                            <span class="badge bg-warning text-dark">Suspicious</span>
+                            {% else %}
+                            <span class="badge bg-danger">Likely Phishing</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="fw-bold {% if s.risk_score < 30 %}text-success{% elif s.risk_score < 60 %}text-warning{% else %}text-danger{% endif %}">
+                                {{ s.risk_score }}/100
+                            </span>
+                        </td>
+                        <td class="text-secondary small">
+                            <code>{{ s.user_id or 'Anonymous' }}</code>
+                        </td>
+                        <td class="text-secondary small">
+                            {{ s.scanned_at.strftime('%Y-%m-%d %H:%M') if s.scanned_at else 'Recent' }}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center py-4 text-secondary">
+                            No system-wide scans recorded yet.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,406 @@
+[2026-09-03 17:58:20] INFO [phishguard.train:44] Loading dataset from: C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\dataset\sample_dataset.csv
+[2026-09-03 17:58:20] INFO [phishguard.train:44] Loading dataset from: C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\dataset\sample_dataset.csv
+[2026-09-03 17:58:20] INFO [phishguard.train:57] Cleaned dataset: 400 rows retained from 400 initial entries.
+[2026-09-03 17:58:20] INFO [phishguard.train:57] Cleaned dataset: 400 rows retained from 400 initial entries.
+[2026-09-03 17:58:20] INFO [phishguard.train:60] Extracting 40 features for 400 URLs...
+[2026-09-03 17:58:20] INFO [phishguard.train:60] Extracting 40 features for 400 URLs...
+[2026-09-03 17:58:20] INFO [phishguard.train:78] Train samples: 320 (Benign: 160, Phishing: 160)
+[2026-09-03 17:58:20] INFO [phishguard.train:78] Train samples: 320 (Benign: 160, Phishing: 160)
+[2026-09-03 17:58:20] INFO [phishguard.train:79] Test samples: 80 (Benign: 40, Phishing: 40)
+[2026-09-03 17:58:20] INFO [phishguard.train:79] Test samples: 80 (Benign: 40, Phishing: 40)
+[2026-09-03 17:58:20] INFO [phishguard.train:87] Training Random Forest Classifier (n_estimators=100)...
+[2026-09-03 17:58:20] INFO [phishguard.train:87] Training Random Forest Classifier (n_estimators=100)...
+[2026-09-03 17:58:21] INFO [phishguard.train:106] 
+Model Evaluation Report:
+              precision    recall  f1-score   support
+
+  Benign (0)       1.00      1.00      1.00        40
+Phishing (1)       1.00      1.00      1.00        40
+
+    accuracy                           1.00        80
+   macro avg       1.00      1.00      1.00        80
+weighted avg       1.00      1.00      1.00        80
+
+[2026-09-03 17:58:21] INFO [phishguard.train:106] 
+Model Evaluation Report:
+              precision    recall  f1-score   support
+
+  Benign (0)       1.00      1.00      1.00        40
+Phishing (1)       1.00      1.00      1.00        40
+
+    accuracy                           1.00        80
+   macro avg       1.00      1.00      1.00        80
+weighted avg       1.00      1.00      1.00        80
+
+[2026-09-03 17:58:21] INFO [phishguard.train:107] Confusion Matrix: [[40, 0], [0, 40]]
+[2026-09-03 17:58:21] INFO [phishguard.train:107] Confusion Matrix: [[40, 0], [0, 40]]
+[2026-09-03 17:58:21] INFO [phishguard.train:139] Model saved to C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\models\phishing_model.pkl
+[2026-09-03 17:58:21] INFO [phishguard.train:139] Model saved to C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\models\phishing_model.pkl
+[2026-09-03 17:58:21] INFO [phishguard.train:140] Scaler saved to C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\models\feature_scaler.pkl
+[2026-09-03 17:58:21] INFO [phishguard.train:140] Scaler saved to C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\models\feature_scaler.pkl
+[2026-09-03 17:58:21] INFO [phishguard.train:141] Metadata saved to C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\models\model_metadata.json
+[2026-09-03 17:58:21] INFO [phishguard.train:141] Metadata saved to C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\models\model_metadata.json
+[2026-09-03 18:06:30] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:06:30] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:06:30] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:06:30] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:06:30] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:06:30] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:06:30] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:06:30] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:06:33] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:06:33] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:06:33] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.com': Likely Safe (Risk: 0/100)
+[2026-09-03 18:06:33] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:06:33] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:06:33] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:06:33] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:06:33] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:06:33] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:06:33] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:06:33] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:06:33] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:06:33] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:06:33] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:06:33] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:07:47] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:07:47] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:07:47] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:07:47] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:07:47] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:07:47] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:07:47] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:07:47] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:07:49] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:07:49] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:07:49] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.com': Likely Safe (Risk: 0/100)
+[2026-09-03 18:07:49] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:07:49] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:07:49] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:07:49] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:07:49] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:07:49] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:07:49] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:07:49] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:07:49] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:07:49] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:07:49] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:07:49] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:13:22] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:13:22] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:13:22] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:13:22] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:13:23] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:13:23] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:13:23] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:13:23] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:14:02] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:14:02] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:14:02] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.com': Likely Safe (Risk: 0/100)
+[2026-09-03 18:14:18] INFO [phishguard.analyzer:89] Analyzed 'http://paypal-security-update.account-verify.xyz/login.php?urgent=true': Likely Phishing (Risk: 99/100)
+[2026-09-03 18:18:06] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:18:06] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:18:06] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:18:06] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:18:07] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:18:07] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:18:07] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:18:07] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:19:39] INFO [phishguard.auth:104] First user 'friends6363963@gmail.com' created as system Administrator.
+[2026-09-03 18:19:39] INFO [phishguard.auth:108] New user registered: friends6363963@gmail.com (ID: 6a996ce3debcfcbc1388dbb5, Role: admin)
+[2026-09-03 18:19:51] INFO [phishguard.auth:157] Successful login for user 'friends6363963@gmail.com' (role: admin)
+[2026-09-03 18:21:56] INFO [phishguard.analyzer:89] Analyzed 'https://www.finalproject.in/post/top-10-final-year-web-development-projects-in-tamil-nadu-1': Suspicious (Risk: 54/100)
+[2026-09-03 18:23:40] INFO [phishguard.analyzer:89] Analyzed 'https://www.bing.com/search?filters=ufn%3a%22Google%22+sid%3a%22f39b29ec-05ee-d6cb-3070-ddaa0fb00ee0%22&asbe=AS&qs=MB&pq=goo&sk=CSYN1UAS8AS10LS1FT2&sc=25-3&pglt=2083&q=google&cvid=93394897215242fe9faa6054b788738b&gs_lcrp=EgRlZGdlKgcIABAuGPkHMgcIABAuGPkHMgYIARBFGDkyBggCEC4YQDIGCAMQABhAMgYIBBAuGEAyBggFEAAYQDIGCAYQRRg8MgYIBxBFGDwyBggIEEUYPDIICAkQ6QcY_FXSAQgyMTIwajBqN6gCALACAA&FORM=ANNAB1&PC=U531&source=chrome.ob': Suspicious (Risk: 57/100)
+[2026-09-03 18:25:11] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.co.in': Suspicious (Risk: 37/100)
+[2026-09-03 18:30:13] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:30:13] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:30:46] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:30:46] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:30:46] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:30:46] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:30:46] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:30:46] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:30:46] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:30:46] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:31:22] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:31:22] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:31:22] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:31:22] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:31:23] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:31:23] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:31:23] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:31:23] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:31:45] INFO [phishguard.train:44] Loading dataset from: C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\dataset\sample_dataset.csv
+[2026-09-03 18:31:45] INFO [phishguard.train:44] Loading dataset from: C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\dataset\sample_dataset.csv
+[2026-09-03 18:31:45] INFO [phishguard.train:57] Cleaned dataset: 400 rows retained from 400 initial entries.
+[2026-09-03 18:31:45] INFO [phishguard.train:57] Cleaned dataset: 400 rows retained from 400 initial entries.
+[2026-09-03 18:31:45] INFO [phishguard.train:60] Extracting 40 features for 400 URLs...
+[2026-09-03 18:31:45] INFO [phishguard.train:60] Extracting 40 features for 400 URLs...
+[2026-09-03 18:31:45] INFO [phishguard.train:78] Train samples: 320 (Benign: 160, Phishing: 160)
+[2026-09-03 18:31:45] INFO [phishguard.train:78] Train samples: 320 (Benign: 160, Phishing: 160)
+[2026-09-03 18:31:45] INFO [phishguard.train:79] Test samples: 80 (Benign: 40, Phishing: 40)
+[2026-09-03 18:31:45] INFO [phishguard.train:79] Test samples: 80 (Benign: 40, Phishing: 40)
+[2026-09-03 18:31:45] INFO [phishguard.train:87] Training Random Forest Classifier (n_estimators=100)...
+[2026-09-03 18:31:45] INFO [phishguard.train:87] Training Random Forest Classifier (n_estimators=100)...
+[2026-09-03 18:31:45] INFO [phishguard.train:106] 
+Model Evaluation Report:
+              precision    recall  f1-score   support
+
+  Benign (0)       1.00      1.00      1.00        40
+Phishing (1)       1.00      1.00      1.00        40
+
+    accuracy                           1.00        80
+   macro avg       1.00      1.00      1.00        80
+weighted avg       1.00      1.00      1.00        80
+
+[2026-09-03 18:31:45] INFO [phishguard.train:106] 
+Model Evaluation Report:
+              precision    recall  f1-score   support
+
+  Benign (0)       1.00      1.00      1.00        40
+Phishing (1)       1.00      1.00      1.00        40
+
+    accuracy                           1.00        80
+   macro avg       1.00      1.00      1.00        80
+weighted avg       1.00      1.00      1.00        80
+
+[2026-09-03 18:31:45] INFO [phishguard.train:107] Confusion Matrix: [[40, 0], [0, 40]]
+[2026-09-03 18:31:45] INFO [phishguard.train:107] Confusion Matrix: [[40, 0], [0, 40]]
+[2026-09-03 18:31:45] INFO [phishguard.train:139] Model saved to C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\models\phishing_model.pkl
+[2026-09-03 18:31:45] INFO [phishguard.train:139] Model saved to C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\models\phishing_model.pkl
+[2026-09-03 18:31:45] INFO [phishguard.train:140] Scaler saved to C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\models\feature_scaler.pkl
+[2026-09-03 18:31:45] INFO [phishguard.train:140] Scaler saved to C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\models\feature_scaler.pkl
+[2026-09-03 18:31:45] INFO [phishguard.train:141] Metadata saved to C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\models\model_metadata.json
+[2026-09-03 18:31:45] INFO [phishguard.train:141] Metadata saved to C:\Users\ELCOT\OneDrive\Desktop\URL\phishguard-ai\models\model_metadata.json
+[2026-09-03 18:32:08] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:32:08] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:32:26] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:32:26] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:32:26] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:32:26] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:32:26] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:32:26] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:32:26] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:32:26] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:32:29] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:32:29] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:32:29] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.com': Likely Safe (Risk: 0/100)
+[2026-09-03 18:32:29] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:32:29] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:32:29] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:32:29] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:32:29] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:32:29] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:32:29] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:32:29] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:32:29] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:32:29] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:32:29] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:32:29] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:33:09] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:33:09] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:33:09] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:33:09] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:33:11] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:33:11] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:33:11] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.com': Likely Safe (Risk: 0/100)
+[2026-09-03 18:33:11] INFO [phishguard.analyzer:89] Analyzed 'http://paypal-security-update.account-verify.xyz/login.php?urgent=true': Likely Phishing (Risk: 98/100)
+[2026-09-03 18:33:11] DEBUG [phishguard.qr:74] pyzbar decoding skipped or failed: No module named 'pyzbar'
+[2026-09-03 18:33:11] DEBUG [phishguard.qr:88] OpenCV QR decoding skipped or failed: No module named 'cv2'
+[2026-09-03 18:33:11] INFO [phishguard.auth:108] New user registered: analyst_a1720e@test.com (ID: 6a99700fa3d0736b690289c0, Role: user)
+[2026-09-03 18:33:12] INFO [phishguard.auth:157] Successful login for user 'analyst_a1720e@test.com' (role: user)
+[2026-09-03 18:33:12] INFO [phishguard.analyzer:89] Analyzed 'https://www.python.org/downloads': Likely Safe (Risk: 0/100)
+[2026-09-03 18:33:12] INFO [phishguard.analyzer:89] Analyzed 'https://www.github.com': Likely Safe (Risk: 0/100)
+[2026-09-03 18:33:12] INFO [phishguard.auth:176] User 'analyst_a1720e@test.com' signed out.
+[2026-09-03 18:34:10] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:34:10] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:34:10] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:34:10] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:34:10] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:34:10] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:34:10] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:34:10] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:35:00] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:35:00] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:35:00] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:35:00] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:35:03] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:35:03] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:35:03] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.com': Likely Safe (Risk: 0/100)
+[2026-09-03 18:35:03] INFO [phishguard.analyzer:89] Analyzed 'http://paypal-security-update.account-verify.xyz/login.php?urgent=true': Likely Phishing (Risk: 98/100)
+[2026-09-03 18:35:03] DEBUG [phishguard.qr:74] pyzbar decoding skipped or failed: No module named 'pyzbar'
+[2026-09-03 18:35:03] INFO [phishguard.qr:86] QR decoded successfully via OpenCV: https://en.wikipedia.org/wiki/Computer_security
+[2026-09-03 18:35:03] INFO [phishguard.analyzer:89] Analyzed 'https://en.wikipedia.org/wiki/Computer_security': Likely Safe (Risk: 0/100)
+[2026-09-03 18:35:03] INFO [phishguard.auth:108] New user registered: analyst_ce3030@test.com (ID: 6a99707f54d18afde5752f0b, Role: user)
+[2026-09-03 18:35:03] INFO [phishguard.auth:157] Successful login for user 'analyst_ce3030@test.com' (role: user)
+[2026-09-03 18:35:03] INFO [phishguard.analyzer:89] Analyzed 'https://www.python.org/downloads': Likely Safe (Risk: 0/100)
+[2026-09-03 18:35:03] INFO [phishguard.analyzer:89] Analyzed 'https://www.github.com': Likely Safe (Risk: 0/100)
+[2026-09-03 18:35:03] INFO [phishguard.auth:176] User 'analyst_ce3030@test.com' signed out.
+[2026-09-03 18:35:51] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:35:51] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:35:51] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:35:51] INFO [phishguard.app:99] PhishGuard AI initialized in 'default' environment.
+[2026-09-03 18:41:55] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:41:55] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:41:55] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:41:55] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:41:56] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:41:56] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:41:56] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:41:56] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:42:29] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:42:29] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:42:29] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.co.in': Likely Safe (Risk: 19/100)
+[2026-09-03 18:42:29] INFO [phishguard.analyzer:89] Analyzed 'http://secure-paypal.update-billing.tk/login': Likely Phishing (Risk: 96/100)
+[2026-09-03 18:42:50] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:42:50] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:42:50] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:42:50] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:42:50] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:42:50] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:42:50] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:42:50] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:42:52] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:42:52] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:42:53] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.com': Likely Safe (Risk: 0/100)
+[2026-09-03 18:42:53] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:42:53] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:42:53] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:42:53] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:42:53] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:42:53] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:42:53] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:42:53] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:42:53] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:42:53] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:42:53] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:42:53] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:43:17] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-03 18:43:17] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-03 18:43:17] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:43:17] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-03 18:43:19] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:43:19] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-03 18:43:19] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.com': Likely Safe (Risk: 0/100)
+[2026-09-03 18:43:19] INFO [phishguard.analyzer:89] Analyzed 'http://paypal-security-update.account-verify.xyz/login.php?urgent=true': Likely Phishing (Risk: 98/100)
+[2026-09-03 18:43:19] DEBUG [phishguard.qr:74] pyzbar decoding skipped or failed: No module named 'pyzbar'
+[2026-09-03 18:43:19] INFO [phishguard.qr:86] QR decoded successfully via OpenCV: https://en.wikipedia.org/wiki/Computer_security
+[2026-09-03 18:43:19] INFO [phishguard.analyzer:89] Analyzed 'https://en.wikipedia.org/wiki/Computer_security': Likely Safe (Risk: 0/100)
+[2026-09-03 18:43:19] INFO [phishguard.auth:108] New user registered: analyst_d68293@test.com (ID: 6a99726fa3f181994ee28bf2, Role: user)
+[2026-09-03 18:43:20] INFO [phishguard.auth:157] Successful login for user 'analyst_d68293@test.com' (role: user)
+[2026-09-03 18:43:20] INFO [phishguard.analyzer:89] Analyzed 'https://www.python.org/downloads': Likely Safe (Risk: 0/100)
+[2026-09-03 18:43:20] INFO [phishguard.analyzer:89] Analyzed 'https://www.github.com': Likely Safe (Risk: 0/100)
+[2026-09-03 18:43:20] INFO [phishguard.auth:176] User 'analyst_d68293@test.com' signed out.
+[2026-09-03 18:54:19] INFO [phishguard.analyzer:89] Analyzed 'https://www.bing.com/search?q=%0Ahttps%3A%2F%2Fwww.google.co.in&form=IPRV10': Likely Phishing (Risk: 62/100)
+[2026-09-03 18:54:50] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.co.in': Likely Safe (Risk: 19/100)
+[2026-09-03 18:54:56] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.co.in': Likely Safe (Risk: 19/100)
+[2026-09-03 18:55:51] INFO [phishguard.analyzer:89] Analyzed 'https://net52.cc/pv/': Suspicious (Risk: 40/100)
+[2026-09-03 18:56:18] INFO [phishguard.analyzer:89] Analyzed 'https://clk.tradedoubler.com/click?p=401531&a=3449994&epi=enin-edge-topsites-curated': Likely Phishing (Risk: 71/100)
+[2026-09-03 18:56:36] INFO [phishguard.analyzer:89] Analyzed 'https://clk.tradedoubler.com/click?p=401531&a=3449994&epi=enin-edge-topsites-curated': Likely Phishing (Risk: 71/100)
+[2026-09-03 18:57:18] INFO [phishguard.analyzer:89] Analyzed 'https://www.flipkart.com/': Likely Safe (Risk: 0/100)
+[2026-09-03 18:59:55] INFO [phishguard.analyzer:89] Analyzed 'https://www.flipkart.com/all/~cs-79e42ad52149a075d0a3b31f35294baa/pr?sid=osp,cil,e1r&marketplace=FLIPKART&restrictLocale=true&BU=Mixed': Suspicious (Risk: 31/100)
+[2026-09-03 19:01:23] INFO [phishguard.analyzer:89] Analyzed 'https://www.flipkart.com/': Likely Safe (Risk: 0/100)
+[2026-09-05 14:08:05] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-05 14:08:05] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-05 14:08:05] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-05 14:08:05] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-05 14:08:06] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-05 14:08:06] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-05 14:08:06] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-05 14:08:06] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-05 14:08:27] INFO [phishguard.auth:157] Successful login for user 'friends6363963@gmail.com' (role: admin)
+[2026-09-05 14:09:43] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-05 14:09:43] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-05 14:09:43] INFO [phishguard.analyzer:89] Analyzed 'https://www.facebook.com/': Likely Safe (Risk: 0/100)
+[2026-09-05 14:10:49] INFO [phishguard.analyzer:89] Analyzed 'https://netmirror.living': Suspicious (Risk: 31/100)
+[2026-09-05 14:11:30] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.co.in': Likely Safe (Risk: 19/100)
+[2026-09-05 14:11:44] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.com/?zx=1788597682645': Likely Safe (Risk: 16/100)
+[2026-09-05 14:12:40] INFO [phishguard.analyzer:89] Analyzed 'https://spin.ai/blog/riskiest-mobile-apps/': Suspicious (Risk: 54/100)
+[2026-09-05 14:13:27] INFO [phishguard.analyzer:89] Analyzed 'https://www.tn.gov.in/': Likely Safe (Risk: 22/100)
+[2026-09-05 14:14:38] INFO [phishguard.analyzer:89] Analyzed 'https://www.tnesevai.tn.gov.in/Citizen/PortalLogin.aspx': Likely Phishing (Risk: 65/100)
+[2026-09-05 14:15:11] INFO [phishguard.analyzer:89] Analyzed 'https://tn.nic.in/': Likely Safe (Risk: 10/100)
+[2026-09-05 14:17:43] INFO [phishguard.analyzer:89] Analyzed 'http://appleid.apple.com.verify.account-update.tk/restore/auth': Likely Phishing (Risk: 99/100)
+[2026-09-05 14:17:58] INFO [phishguard.analyzer:89] Analyzed 'https://www.github.com/torvalds/linux': Likely Safe (Risk: 0/100)
+[2026-09-05 14:18:06] INFO [phishguard.analyzer:89] Analyzed 'http://192.168.1.50/paypal-security/login.html?token=urgent': Likely Phishing (Risk: 92/100)
+[2026-09-05 14:19:35] DEBUG [phishguard.qr:74] pyzbar decoding skipped or failed: No module named 'pyzbar'
+[2026-09-05 14:19:36] INFO [phishguard.qr:86] QR decoded successfully via OpenCV: HI
+[2026-09-05 14:22:40] DEBUG [phishguard.qr:74] pyzbar decoding skipped or failed: No module named 'pyzbar'
+[2026-09-05 14:22:40] INFO [phishguard.qr:86] QR decoded successfully via OpenCV: https://www.tn.gov.in/
+[2026-09-05 14:22:40] INFO [phishguard.analyzer:89] Analyzed 'https://www.tn.gov.in/': Likely Safe (Risk: 22/100)
+[2026-09-05 14:24:04] DEBUG [phishguard.qr:74] pyzbar decoding skipped or failed: No module named 'pyzbar'
+[2026-09-05 14:24:04] INFO [phishguard.qr:86] QR decoded successfully via OpenCV: https://www.tn.gov.in/
+[2026-09-05 14:24:05] INFO [phishguard.analyzer:89] Analyzed 'https://www.tn.gov.in/': Likely Safe (Risk: 22/100)
+[2026-09-05 14:24:33] DEBUG [phishguard.qr:74] pyzbar decoding skipped or failed: No module named 'pyzbar'
+[2026-09-05 14:24:33] INFO [phishguard.qr:86] QR decoded successfully via OpenCV: https://net52.cc/pv/
+[2026-09-05 14:24:34] INFO [phishguard.analyzer:89] Analyzed 'https://net52.cc/pv/': Suspicious (Risk: 40/100)
+[2026-09-05 14:25:20] DEBUG [phishguard.qr:74] pyzbar decoding skipped or failed: No module named 'pyzbar'
+[2026-09-05 14:25:20] INFO [phishguard.qr:86] QR decoded successfully via OpenCV: hello world
+[2026-09-21 06:37:21] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-21 06:37:21] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-21 06:37:21] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-21 06:37:21] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-21 06:37:22] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-21 06:37:22] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-21 06:37:22] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-21 06:37:22] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-21 06:38:37] INFO [phishguard.auth:108] New user registered: sabari@gmail.com (ID: 6ab08395256f361d1bb16424, Role: user)
+[2026-09-21 06:39:00] INFO [phishguard.auth:157] Successful login for user 'sabari@gmail.com' (role: user)
+[2026-09-21 06:39:43] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:39:43] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:39:50] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:39:50] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:40:01] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:40:01] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:40:09] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:40:09] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:40:20] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:40:20] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:40:38] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:40:38] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:43:22] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:43:22] ERROR [phishguard.predict:52] Failed to load model/scaler artifacts: No module named 'sklearn'
+[2026-09-21 06:45:51] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-21 06:45:51] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-21 06:46:10] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-21 06:46:10] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-21 06:46:10] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-21 06:46:10] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-21 06:46:11] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-21 06:46:11] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-21 06:46:11] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-21 06:46:11] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-21 06:47:06] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-21 06:47:06] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-21 06:47:06] INFO [phishguard.analyzer:89] Analyzed 'https://www.amazon.in/s?k=join+amazon+prime&adgrpid=1327112148528381&hvadid=82944842492529&hvbmt=bb&hvdev=c&hvlocphy=157302&hvnetw=o&hvqmt=b&hvtargid=kwd-82945393014646%3Aloc-90&hydadcr=5626_2502674&mcid=3861a9d242543041b997efa1f39279d3&msclkid=99fba97680bf11cf284dc3c605cc3db8&tag=msndeskstdin-21&ref=pd_sl_9ntprzamt3_b': Suspicious (Risk: 42/100)
+[2026-09-21 06:48:00] INFO [phishguard.analyzer:89] Analyzed 'https://www.amazon.in': Likely Safe (Risk: 0/100)
+[2026-09-21 06:49:45] INFO [phishguard.analyzer:89] Analyzed 'https://www.flipkart.com': Likely Safe (Risk: 0/100)
+[2026-09-21 06:50:49] INFO [phishguard.analyzer:89] Analyzed 'https://net52.cc': Suspicious (Risk: 41/100)
+[2026-09-21 06:52:02] INFO [phishguard.analyzer:89] Analyzed 'https://net52.cc': Suspicious (Risk: 41/100)
+[2026-09-21 06:52:36] INFO [phishguard.analyzer:89] Analyzed 'https://netmirror.living/': Suspicious (Risk: 31/100)
+[2026-09-21 06:52:59] INFO [phishguard.analyzer:89] Analyzed 'https://netmirror.living/': Suspicious (Risk: 31/100)
+[2026-09-21 07:00:31] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-21 07:00:31] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-21 07:00:32] INFO [phishguard.analyzer:89] Analyzed 'https://www.google.com': Likely Safe (Risk: 0/100)
+[2026-09-21 07:03:16] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-21 07:03:16] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-21 07:03:16] INFO [phishguard.analyzer:89] Analyzed 'https://netmirror.living/': Suspicious (Risk: 31/100)
+[2026-09-21 07:05:14] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-21 07:05:14] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-21 07:05:14] INFO [phishguard.analyzer:89] Analyzed 'https://netmirror.living/': Suspicious (Risk: 31/100)
+[2026-09-21 07:06:37] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-21 07:06:37] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-21 07:06:37] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-21 07:06:37] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-21 07:06:38] INFO [phishguard.database:42] Connected to MongoDB database 'phishguard' successfully.
+[2026-09-21 07:06:38] INFO [phishguard.database:70] Database indexes verified/created.
+[2026-09-21 07:06:38] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-21 07:06:38] INFO [phishguard.app:99] PhishGuard AI initialized in 'development' environment.
+[2026-09-21 07:06:54] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-21 07:06:54] INFO [phishguard.predict:50] Successfully loaded ML model and scaler into memory.
+[2026-09-21 07:06:54] INFO [phishguard.analyzer:89] Analyzed 'https://netmirror.living/': Suspicious (Risk: 31/100)
+[2026-09-21 07:07:31] INFO [phishguard.analyzer:89] Analyzed 'https://www.bing.com/alink/link?url=https%3A%2F%2Fclk.tradedoubler.com%2Fclick%3Fp%3D401531%26a%3D3449994%26epi%3Denin-edge-topsites-curated&source=msn-ntp&h=Sx1t4xcmDr7RTg%2ByEL%2B0%2FJIHnUN4Q9bI58sK1FIIaz0%3D&aff=p&p=mkt%3Aen-in%3Bf%3AIAIxxed6GvrEAW4Uy9B6IN0QXTWDCDB5Qxn7%2FZix3ik%3D%3Btssls%3Awpod&ocid=entnewsntp&pc=U531&cvid=6ab08a4b95a94f14970013728d1a2bee&ei=6': Likely Phishing (Risk: 71/100)
+[2026-09-21 07:10:04] DEBUG [phishguard.qr:74] pyzbar decoding skipped or failed: No module named 'pyzbar'
+[2026-09-21 07:10:04] INFO [phishguard.qr:86] QR decoded successfully via OpenCV: https://netmirror.living/
+[2026-09-21 07:10:04] INFO [phishguard.analyzer:89] Analyzed 'https://netmirror.living/': Suspicious (Risk: 31/100)
+[2026-09-21 07:11:01] DEBUG [phishguard.qr:74] pyzbar decoding skipped or failed: No module named 'pyzbar'
+[2026-09-21 07:11:01] INFO [phishguard.qr:86] QR decoded successfully via OpenCV: hi hello

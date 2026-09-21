@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}{{ error_title or "Page Not Found" }} - PhishGuard AI{% endblock %}
+
+{% block content %}
+<div class="container py-5 my-auto text-center">
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+            <div class="card cyber-card p-5 border-secondary shadow-lg">
+                <div class="display-1 fw-bold text-cyan mb-2">
+                    {{ error_code or 404 }}
+                </div>
+                <h3 class="fw-bold text-light mb-3">
+                    {{ error_title or "Destination Not Found" }}
+                </h3>
+                <p class="text-secondary mb-4">
+                    {{ error_message or "The requested URL address, resource, or security telemetry endpoint does not exist or is inaccessible." }}
+                </p>
+
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="{{ url_for('index') }}" class="btn btn-cyber-primary">
+                        <i class="fa-solid fa-house me-1"></i> Return Home
+                    </a>
+                    <a href="{{ url_for('scan.scan') }}" class="btn btn-cyber-outline">
+                        <i class="fa-solid fa-magnifying-glass me-1"></i> Open URL Scanner
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

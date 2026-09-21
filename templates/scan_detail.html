@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Historical Scan Detail - PhishGuard AI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3 class="fw-bold mb-1">
+                        <i class="fa-solid fa-file-shield text-cyan me-2"></i>Historical Scan Record
+                    </h3>
+                    <span class="text-secondary small">Recorded on {{ scan.scanned_at.strftime('%Y-%m-%d at %H:%M:%S UTC') if scan.scanned_at else 'Historical' }}</span>
+                </div>
+                <a href="{{ url_for('dashboard.history') }}" class="btn btn-cyber-outline btn-sm">
+                    <i class="fa-solid fa-arrow-left me-1"></i> Back to History
+                </a>
+            </div>
+
+            <!-- Target URL -->
+            <div class="card cyber-card p-3 mb-4">
+                <span class="text-secondary small d-block">TARGET URL:</span>
+                <code class="text-light fs-6 text-break">{{ scan.url }}</code>
+            </div>
+
+            <!-- Verdict Card -->
+            {% set score = scan.risk_score %}
+            {% set cls = scan.classification %}
+            <div class="card cyber-card p-4 p-md-5 mb-4 border-2 {% if cls == 'Likely Safe' %}border-success{% elif cls == 'Suspicious' %}border-warning{% else %}border-danger{% endif %}">
+                <div class="row align-items-center gy-3">
+                    <div class="col-md-7">
+                        <span class="text-secondary text-uppercase small letter-spacing d-block">Assigned Classification</span>
+                        <h2 class="fw-bold mb-3 {% if cls == 'Likely Safe' %}text-success{% elif cls == 'Suspicious' %}text-warning{% else %}text-danger{% endif %}">
+                            {{ cls }}
+                        </h2>
+
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between small text-secondary mb-1">
+                                <span>Risk Assessment Score</span>
+                                <span class="fw-bold text-light">{{ score }} / 100</span>
+                            </div>
+                            <div class="progress cyber-progress" style="height: 10px;">
+                                <div class="progress-bar {% if score < 30 %}bg-success{% elif score < 60 %}bg-warning{% else %}bg-danger{% endif %}"
+                                     role="progressbar" style="width: {{ score }}%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <div class="p-3 bg-dark rounded border border-secondary">
+                            <div class="text-secondary small text-uppercase">Phishing Probability</div>
+                            <div class="display-6 fw-bold text-cyan">{{ (scan.probability * 100)|round(1) }}%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extracted Features Parameters -->
+            <div class="card cyber-card p-4 mb-4">
+                <h5 class="fw-bold text-light mb-3">
+                    <i class="fa-solid fa-code text-cyan me-2"></i>Extracted Structural Features (Snapshot)
+                </h5>
+                <div class="table-responsive">
+                    <table class="table cyber-table table-sm align-middle font-monospace small">
+                        <thead>
+                            <tr>
+                                <th>Feature Parameter</th>
+                                <th>Recorded Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for k, v in scan.features.items() %}
+                            <tr>
+                                <td class="text-secondary">{{ k }}</td>
+                                <td class="text-cyan fw-bold">{{ v }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

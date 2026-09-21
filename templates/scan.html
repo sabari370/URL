@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}URL Scanner - PhishGuard AI{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 col-xl-8">
+
+            <div class="text-center mb-4">
+                <div class="display-6 fw-bold mb-2">
+                    <i class="fa-solid fa-magnifying-glass text-cyan me-2"></i>URL Security Scanner
+                </div>
+                <p class="text-secondary">
+                    Submit any suspicious web link to extract structural indicators and calculate real-time ML risk scores.
+                </p>
+            </div>
+
+            <!-- Main Scanner Card -->
+            <div class="card cyber-card p-4 p-md-5 mb-4 shadow-lg">
+                <form action="{{ url_for('scan.scan') }}" method="POST" id="scanForm">
+                    <div class="mb-3">
+                        <label for="urlInput" class="form-label text-light fw-semibold">Target Web Address (URL):</label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text bg-dark border-secondary text-cyan">
+                                <i class="fa-solid fa-globe"></i>
+                            </span>
+                            <input type="text" class="form-control bg-dark text-light border-secondary" id="urlInput" name="url"
+                                   placeholder="https://secure-login.bank-update.xyz/verify"
+                                   value="{{ entered_url or '' }}" required autofocus autocomplete="off">
+                            <button type="submit" class="btn btn-cyber-primary px-4" id="btnSubmit">
+                                <span class="spinner-border spinner-border-sm me-2 d-none" id="btnSpinner"></span>
+                                <i class="fa-solid fa-shield-virus me-1"></i> Scan Now
+                            </button>
+                        </div>
+                        <div class="form-text text-secondary mt-2">
+                            <i class="fa-solid fa-circle-info text-cyan me-1"></i>
+                            Supported schemes: <code>http://</code> and <code>https://</code>. Maximum length 2048 characters.
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Sample Demonstrations -->
+                <div class="mt-4 pt-3 border-top border-dark-subtle">
+                    <div class="small text-secondary mb-2 fw-semibold">
+                        <i class="fa-solid fa-flask me-1 text-cyan"></i> Load Demo Test Cases:
+                    </div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="button" class="btn btn-sm btn-dark border-secondary text-secondary demo-pill"
+                                data-url="https://www.github.com/torvalds/linux">
+                            <i class="fa-solid fa-shield text-success me-1"></i> Safe: GitHub Repo
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark border-secondary text-secondary demo-pill"
+                                data-url="http://192.168.1.50/paypal-security/login.html?token=urgent">
+                            <i class="fa-solid fa-triangle-exclamation text-warning me-1"></i> Suspicious: IP Host
+                        </button>
+                        <button type="button" class="btn btn-sm btn-dark border-secondary text-secondary demo-pill"
+                                data-url="http://appleid.apple.com.verify.account-update.tk/restore/auth">
+                            <i class="fa-solid fa-skull-crossbones text-danger me-1"></i> Phishing: Nested Brand Subdomains
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Architecture Advisory Box -->
+            <div class="card cyber-card p-4 border-warning-subtle mb-4">
+                <div class="d-flex align-items-start">
+                    <div class="me-3 text-warning">
+                        <i class="fa-solid fa-shield-halved fa-2x"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold text-light mb-1">Non-Invasive Analysis Model (Zero SSRF)</h6>
+                        <p class="text-secondary small mb-0">
+                            PhishGuard AI analyzes the <strong>structural anatomy, character distributions, token entropy, and lexical attributes</strong> of the submitted link. The backend server intentionally <strong>never executes network requests or renders web content</strong> from user-submitted URLs, eliminating Server-Side Request Forgery (SSRF) and zero-day execution risks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Inspected Matrix -->
+            <div class="card cyber-card p-4">
+                <h6 class="fw-bold text-light mb-3"><i class="fa-solid fa-list-check text-cyan me-2"></i>Features Inspected During Analysis</h6>
+                <div class="row g-3 small text-secondary">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="p-2 bg-dark rounded border border-secondary">
+                            <i class="fa-solid fa-check text-cyan me-1"></i> Total URL & Host Length
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="p-2 bg-dark rounded border border-secondary">
+                            <i class="fa-solid fa-check text-cyan me-1"></i> Subdomain Nesting Depth
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="p-2 bg-dark rounded border border-secondary">
+                            <i class="fa-solid fa-check text-cyan me-1"></i> Raw Host IP Addressing
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="p-2 bg-dark rounded border border-secondary">
+                            <i class="fa-solid fa-check text-cyan me-1"></i> High-Risk TLD Verification
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="p-2 bg-dark rounded border border-secondary">
+                            <i class="fa-solid fa-check text-cyan me-1"></i> Shortener Service Cloaking
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <div class="p-2 bg-dark rounded border border-secondary">
+                            <i class="fa-solid fa-check text-cyan me-1"></i> Shannon Token Entropy
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.querySelectorAll('.demo-pill').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const url = this.getAttribute('data-url');
+            const input = document.getElementById('urlInput');
+            if (input) {
+                input.value = url;
+                input.focus();
+            }
+        });
+    });
+
+    const scanForm = document.getElementById('scanForm');
+    if (scanForm) {
+        scanForm.addEventListener('submit', function() {
+            const btn = document.getElementById('btnSubmit');
+            const spinner = document.getElementById('btnSpinner');
+            if (btn && spinner) {
+                btn.disabled = true;
+                spinner.classList.remove('d-none');
+            }
+        });
+    }
+</script>
+{% endblock %}

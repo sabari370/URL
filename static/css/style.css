@@ -1,0 +1,293 @@
+/* ==========================================================================
+   PhishGuard AI - Main Stylesheet
+   Dark Cybersecurity SaaS Theme
+   ========================================================================== */
+
+:root {
+    --bg-main: #0a0e1a;
+    --bg-secondary: #0d1222;
+    --bg-card: #13192a;
+    --bg-card-hover: #182035;
+    --bg-dark-input: #090d18;
+    
+    --accent-cyan: #00d4ff;
+    --accent-cyan-glow: rgba(0, 212, 255, 0.25);
+    --accent-blue: #2563eb;
+    --accent-purple: #8b5cf6;
+    
+    --status-safe: #10b981;
+    --status-suspicious: #f59e0b;
+    --status-danger: #ef4444;
+    
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --border-subtle: #1e293b;
+    --border-accent: rgba(0, 212, 255, 0.35);
+    
+    --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+}
+
+body {
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary) !important;
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Typography & Accent Utilities */
+.text-cyan {
+    color: var(--accent-cyan) !important;
+}
+
+.text-gradient-cyan {
+    background: linear-gradient(135deg, #00d4ff 0%, #3b82f6 50%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.letter-spacing {
+    letter-spacing: 0.1em;
+}
+
+code, pre {
+    font-family: var(--font-mono);
+}
+
+/* Navbar */
+.cyber-navbar {
+    background-color: rgba(10, 14, 26, 0.95) !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0.85rem 0;
+    transition: border-color 0.3s ease;
+}
+
+.cyber-navbar:hover {
+    border-bottom-color: var(--border-accent);
+}
+
+.brand-shield {
+    font-size: 1.4rem;
+}
+
+.brand-text {
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+    color: #fff;
+}
+
+.nav-link {
+    color: var(--text-secondary) !important;
+    font-size: 0.92rem;
+    font-weight: 500;
+    padding: 0.5rem 0.85rem !important;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--accent-cyan) !important;
+    background-color: rgba(0, 212, 255, 0.08);
+}
+
+/* Cyber Cards */
+.cyber-card {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cyber-card:hover {
+    border-color: rgba(0, 212, 255, 0.25);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Buttons */
+.btn-cyber-primary {
+    background: linear-gradient(135deg, #00d4ff 0%, #0284c7 100%);
+    color: #031024 !important;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+.btn-cyber-primary:hover {
+    background: linear-gradient(135deg, #38bdf8 0%, #0369a1 100%);
+    box-shadow: 0 0 16px var(--accent-cyan-glow);
+    color: #031024 !important;
+    transform: translateY(-1px);
+}
+
+.btn-cyber-outline {
+    background: transparent;
+    color: var(--accent-cyan) !important;
+    border: 1px solid var(--accent-cyan);
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+}
+
+.btn-cyber-outline:hover {
+    background-color: rgba(0, 212, 255, 0.12);
+    border-color: #38bdf8;
+    color: #fff !important;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
+}
+
+/* Hero Section & Background */
+.hero-section {
+    background: radial-gradient(circle at 50% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 60%);
+}
+
+.cyber-grid-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(rgba(30, 41, 59, 0.35) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(30, 41, 59, 0.35) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.cyber-badge {
+    background-color: rgba(0, 212, 255, 0.1);
+    color: var(--accent-cyan);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+/* Inputs */
+.cyber-input {
+    background-color: var(--bg-dark-input) !important;
+    border-color: var(--border-subtle) !important;
+    color: var(--text-primary) !important;
+}
+
+.cyber-input:focus {
+    border-color: var(--accent-cyan) !important;
+    box-shadow: 0 0 0 0.25rem rgba(0, 212, 255, 0.15) !important;
+}
+
+.cyber-input-addon {
+    border-color: var(--border-subtle) !important;
+}
+
+/* Progress Bars */
+.cyber-progress {
+    background-color: #090d18;
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* Process Step Badges */
+.step-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba(0, 212, 255, 0.15);
+    color: var(--accent-cyan);
+    border: 2px solid var(--accent-cyan);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+/* Tables */
+.cyber-table {
+    --bs-table-bg: transparent;
+    --bs-table-hover-bg: rgba(255, 255, 255, 0.02);
+    --bs-table-border-color: var(--border-subtle);
+}
+
+.cyber-table thead th {
+    background-color: rgba(10, 14, 26, 0.6);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Pagination */
+.cyber-pagination .page-link {
+    background-color: var(--bg-card);
+    border-color: var(--border-subtle);
+    color: var(--text-secondary);
+    margin: 0 3px;
+    border-radius: 6px;
+}
+
+.cyber-pagination .page-item.active .page-link {
+    background-color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    color: #0a0e1a;
+    font-weight: 700;
+}
+
+.cyber-pagination .page-link:hover {
+    background-color: rgba(0, 212, 255, 0.15);
+    color: var(--accent-cyan);
+}
+
+/* Dropdown */
+.cyber-dropdown {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.cyber-dropdown .dropdown-item {
+    color: var(--text-primary);
+    font-size: 0.88rem;
+}
+
+.cyber-dropdown .dropdown-item:hover {
+    background-color: rgba(0, 212, 255, 0.12);
+    color: var(--accent-cyan);
+}
+
+/* Upload Dropzone */
+.upload-dropzone {
+    background-color: rgba(9, 13, 24, 0.7);
+    border: 2px dashed var(--border-subtle);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.upload-dropzone:hover, .upload-dropzone.dragover {
+    border-color: var(--accent-cyan);
+    background-color: rgba(0, 212, 255, 0.05);
+}
+
+/* Alerts */
+.cyber-alert {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+}
+
+/* Footer */
+.cyber-footer {
+    background-color: #060912;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+}

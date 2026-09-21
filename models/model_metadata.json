@@ -1,0 +1,68 @@
+{
+    "model_name": "Random Forest Classifier",
+    "version": "1.0.0",
+    "training_date": "2026-09-03 18:31:45",
+    "dataset_file": "sample_dataset.csv",
+    "total_samples": 400,
+    "train_samples": 320,
+    "test_samples": 80,
+    "feature_count": 40,
+    "feature_names": [
+        "url_length",
+        "hostname_length",
+        "path_length",
+        "query_length",
+        "fragment_length",
+        "dot_count",
+        "hyphen_count",
+        "underscore_count",
+        "slash_count",
+        "question_mark_count",
+        "equal_count",
+        "ampersand_count",
+        "at_symbol_count",
+        "exclamation_count",
+        "tilde_count",
+        "percent_count",
+        "hash_count",
+        "digit_count",
+        "letter_count",
+        "special_char_count",
+        "hostname_dot_count",
+        "subdomain_count",
+        "path_segment_count",
+        "query_param_count",
+        "double_slash_count",
+        "has_percent_encoding",
+        "percent_encoded_char_count",
+        "has_https",
+        "has_suspicious_port",
+        "port",
+        "has_ip_host",
+        "has_suspicious_tld",
+        "has_punycode",
+        "is_url_shortener",
+        "suspicious_keyword_count",
+        "url_entropy",
+        "hostname_entropy",
+        "digit_ratio",
+        "letter_ratio",
+        "longest_token_length"
+    ],
+    "metrics": {
+        "accuracy": 1.0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "confusion_matrix": [
+            [
+                40,
+                0
+            ],
+            [
+                0,
+                40
+            ]
+        ]
+    }
+}

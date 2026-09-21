@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - PhishGuard AI{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <!-- Header -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+        <div>
+            <h2 class="fw-bold mb-1">
+                <i class="fa-solid fa-gauge-high text-cyan me-2"></i>Security Analytics Dashboard
+            </h2>
+            <p class="text-secondary small mb-0">
+                Personal URL inspection telemetry, classification metrics, and risk trajectory for <strong>{{ current_user.name }}</strong>.
+            </p>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="{{ url_for('scan.scan') }}" class="btn btn-cyber-primary btn-sm">
+                <i class="fa-solid fa-plus me-1"></i> Scan New URL
+            </a>
+            <a href="{{ url_for('dashboard.history') }}" class="btn btn-cyber-outline btn-sm">
+                <i class="fa-solid fa-clock-rotate-left me-1"></i> Full History
+            </a>
+        </div>
+    </div>
+
+    <!-- Stat Cards Row -->
+    <div class="row g-3 mb-4">
+        <div class="col-sm-6 col-xl-3">
+            <div class="card cyber-card p-3 border-start border-4 border-info h-100">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-secondary small text-uppercase fw-semibold">Total URLs Scanned</span>
+                        <h3 class="fw-bold text-light mb-0 mt-1">{{ stats.total }}</h3>
+                    </div>
+                    <div class="stat-icon text-info bg-dark p-3 rounded-circle border border-secondary">
+                        <i class="fa-solid fa-database fa-lg"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card cyber-card p-3 border-start border-4 border-success h-100">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-secondary small text-uppercase fw-semibold">Assessed Likely Safe</span>
+                        <h3 class="fw-bold text-success mb-0 mt-1">{{ stats.safe }}</h3>
+                    </div>
+                    <div class="stat-icon text-success bg-dark p-3 rounded-circle border border-secondary">
+                        <i class="fa-solid fa-shield-check fa-lg"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card cyber-card p-3 border-start border-4 border-warning h-100">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-secondary small text-uppercase fw-semibold">Suspicious Flagged</span>
+                        <h3 class="fw-bold text-warning mb-0 mt-1">{{ stats.suspicious }}</h3>
+                    </div>
+                    <div class="stat-icon text-warning bg-dark p-3 rounded-circle border border-secondary">
+                        <i class="fa-solid fa-triangle-exclamation fa-lg"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xl-3">
+            <div class="card cyber-card p-3 border-start border-4 border-danger h-100">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <span class="text-secondary small text-uppercase fw-semibold">Likely Phishing</span>
+                        <h3 class="fw-bold text-danger mb-0 mt-1">{{ stats.phishing }}</h3>
+                    </div>
+                    <div class="stat-icon text-danger bg-dark p-3 rounded-circle border border-secondary">
+                        <i class="fa-solid fa-skull-crossbones fa-lg"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="row g-4 mb-4">
+        <!-- 7-Day Activity Chart -->
+        <div class="col-lg-8">
+            <div class="card cyber-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-light mb-0">
+                        <i class="fa-solid fa-chart-line text-cyan me-2"></i>Scan Activity (Past 7 Days)
+                    </h5>
+                    <span class="text-secondary small">Daily Category Breakdown</span>
+                </div>
+                <div class="chart-container position-relative" style="min-height: 280px;">
+                    <canvas id="activityChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk Distribution Chart -->
+        <div class="col-lg-4">
+            <div class="card cyber-card p-4 h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold text-light mb-0">
+                        <i class="fa-solid fa-chart-pie text-cyan me-2"></i>Verdict Ratio
+                    </h5>
+                    <span class="text-secondary small">Aggregate</span>
+                </div>
+                <div class="chart-container position-relative d-flex align-items-center justify-content-center" style="min-height: 280px;">
+                    <canvas id="distributionChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Scans Table -->
+    <div class="card cyber-card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold text-light mb-0">
+                <i class="fa-solid fa-list-check text-cyan me-2"></i>Recent Inspection Logs
+            </h5>
+            <a href="{{ url_for('dashboard.history') }}" class="btn btn-sm btn-dark border-secondary text-secondary">
+                View All Scans ({{ stats.total }})
+            </a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table cyber-table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>URL</th>
+                        <th>Classification</th>
+                        <th>Risk Score</th>
+                        <th>Scanned At</th>
+                        <th class="text-end">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for s in recent_scans %}
+                    <tr>
+                        <td class="text-truncate" style="max-width: 320px;">
+                            <code class="text-light small">{{ s.url }}</code>
+                        </td>
+                        <td>
+                            {% if s.classification == 'Likely Safe' %}
+                            <span class="badge bg-success">Likely Safe</span>
+                            {% elif s.classification == 'Suspicious' %}
+                            <span class="badge bg-warning text-dark">Suspicious</span>
+                            {% else %}
+                            <span class="badge bg-danger">Likely Phishing</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="fw-bold {% if s.risk_score < 30 %}text-success{% elif s.risk_score < 60 %}text-warning{% else %}text-danger{% endif %}">
+                                {{ s.risk_score }}/100
+                            </span>
+                        </td>
+                        <td class="text-secondary small">
+                            {{ s.scanned_at.strftime('%Y-%m-%d %H:%M') if s.scanned_at else 'Recent' }}
+                        </td>
+                        <td class="text-end">
+                            <a href="{{ url_for('dashboard.scan_detail', scan_id=s._id) }}" class="btn btn-sm btn-cyber-outline">
+                                <i class="fa-solid fa-eye me-1"></i> View
+                            </a>
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center py-4 text-secondary">
+                            <i class="fa-solid fa-inbox fa-2x mb-2 d-block text-secondary"></i>
+                            No URL inspections recorded yet. Submit your first web link to populate analytics.
+                            <div class="mt-2">
+                                <a href="{{ url_for('scan.scan') }}" class="btn btn-sm btn-cyber-primary">
+                                    <i class="fa-solid fa-magnifying-glass me-1"></i> Go to Scanner
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Embed chart data from server
+    window.chartData = {{ chart_data | tojson | safe }};
+</script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
